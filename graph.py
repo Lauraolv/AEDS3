@@ -37,16 +37,7 @@ class Graph:
                 highest_degree_node = u
         return highest_degree_node
 
-    def max_degree_in(self):
-        max_degree_in = 0
-        highest_degree_node = 0
-        for u in range(self.node_count):
-            degree_in_node_u = self.degree_in(u)
-            if max_degree_in < degree_in_node_u:
-                max_degree_in = degree_in_node_u
-                highest_degree_node = u
-        return max_degree_in
-
+    
     def highest_degree_in(self) -> int:
         max_degree_in = 0
         highest_degree_node = 0
