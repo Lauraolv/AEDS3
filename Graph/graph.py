@@ -81,25 +81,23 @@ class Graph:
     def connected(self):
         return len (self.bfs(0) == self.node_count)
 
-    def adj_v_u(self, u, desc: list[int]):
+    def unvisted_neighbor(self, u, desc: list[int]):
         for i in self.adj_list[u]:
             if desc[i] == 0:
                 return i
         else:
             return - 1
 
-
-    def bp(self, s):
+    def dfs(self, s):
         desc=[]
-        for u in range(self.node_count):
+        for u in range(self.node_count): # desc[0 for _ in range(self.node_count)]
             desc.append(0)
         S=[s]
         R=[s]
         desc[s] = 1
         while len(S) != 0:
-            u = S.pop()
-            S.append(u)
-            v = self.adj_v_u(u, desc)
+            u = S[-1] #S.pop #S.append(u)
+            v = self.unvisted_neighbor(u, desc)
             if(v != - 1):
                 S.append(v)
                 R.append(v)
@@ -108,19 +106,19 @@ class Graph:
                 S.pop()
         return R
 
-    def bp_aux(self, u, desc, R):
+    def dfs_aux(self, u, desc, R):
         desc[u] = 1
         R.append(u)
         for v in self.adj_list[u]:
                 if desc[v] == 0:
-                    self.bp_aux(v, desc,R)
+                    self.dfs_aux(v, desc,R)
 
-    def bp_rec(self, s):
+    def dfs_rec(self, s):
         desc=[]
         for v in range(self.node_count):
             desc.append(0)
         R = []
-        self.bp_aux(s, desc,R)
+        self.dfs_aux(s, desc,R)
         return R
 
     def to_adj_matrix(self):
@@ -153,7 +151,7 @@ class Graph:
         Q=[s]
         R=[s]
         desc[s] = 1
-        while len(Q) != 0:  #ou len(Q)
+        while len(Q) != 0:  
             u = Q.pop(0)
             for v in self.adj_list[u]:
                 if desc[v] == 0:
@@ -172,7 +170,7 @@ class Graph:
             v = path[i +1]
             if v not in self.adj_list[u]:
                 return False
-            if desc[v] != 0 & path[0] != path.pop():
+            if desc[v] != 0 and path[0] != path.pop():
                 return False
             desc[u] = 1
         return True

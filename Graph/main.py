@@ -34,8 +34,8 @@ print(g1.adj_list)  # [[2], [0], [0], [], []] (the graph now has 5 nodes)
 print(g1.adj_list)  # [[2], [0], [0, 4], [], [2]]
 g1.remove_node(0)
 print(g1.adj_list)  # [[], [3], [], [1]] (node 1 becomes 0, node 2 becomes 1, 3 becomes 2, and 4 becomes 3)
-print("BP FROM 0: ", g1.bp(0)) 
-print("BP REC FROM 3: ", g1.bp_rec(3)) 
+print("DFS FROM 0: ", g1.dfs(0)) 
+print("DFS REC FROM 3: ", g1.dfs_rec(3)) 
 # BFS AND CONNECTED (LESSON 3)
 g1 = Graph(10, adj_list=[])
 g1.add_undirected_edge(0, 1)
@@ -48,7 +48,7 @@ g1.add_undirected_edge(6, 9)
 g1.add_undirected_edge(7, 8)
 g1.add_undirected_edge(8, 9)
 print("BFS FROM 5:", g1.bfs(5))  # [5, 3, 4, 6, 2, 7, 9, 8]
-print("BP REC FROM 5: ", g1.bp_rec(5)) # [5, 3, 2, 4, 6, 7, 8, 9]
+print("DFS REC FROM 5: ", g1.dfs_rec(5)) # [5, 3, 2, 4, 6, 7, 8, 9]
 # COMPLEMENT AND SUBGRAPH TESTS (LESSON 2)
 # g1 = Graph(3, adj_list=[])
 # g1.add_undirected_edge(0, 1)
